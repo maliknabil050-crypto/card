@@ -48,7 +48,6 @@
       position: relative;
     }
 
-    /* الشعار / الأيقونة الشخصية */
     .avatar-container {
       width: 85px;
       height: 85px;
@@ -83,7 +82,6 @@
       font-style: italic;
     }
 
-    /* قائمة الأزرار الفاخرة */
     .links-list {
       display: flex;
       flex-direction: column;
@@ -136,37 +134,6 @@
       transition: 0.2s;
     }
 
-    /* شبكة الأزرار الصغيرة (مثل سناب وإكس) */
-    .grid-links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .grid-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text);
-      text-decoration: none;
-      padding: 14px 10px;
-      border-radius: 16px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .grid-btn:hover {
-      background: var(--accent);
-      color: #FFF;
-      border-color: var(--accent-light);
-      transform: translateY(-2px);
-    }
-
     .card-footer {
       font-size: 0.72rem;
       color: var(--muted);
@@ -184,7 +151,6 @@
 
   <div class="card-container">
     
-    <!-- الأيقونة الشخصية -->
     <div class="avatar-container">
       <span class="avatar-symbol">ف</span>
     </div>
@@ -207,27 +173,6 @@
         <div class="btn-content">
           <span class="btn-icon">💬</span>
           <span>محادثة واتساب</span>
-        </div>
-        <span class="arrow-icon">←</span>
-      </a>
-
-      <!-- شبكة الأزرار (سناب + منصة إكس) -->
-      <div class="grid-links">
-        <a href="https://www.snapchat.com" target="_blank" class="grid-btn">
-          <span class="btn-icon">👻</span>
-          <span>سناب شات</span>
-        </a>
-        <a href="https://x.com" target="_blank" class="grid-btn">
-          <span class="btn-icon">🅧</span>
-          <span>منصة إكس</span>
-        </a>
-      </div>
-
-      <!-- 5. زر البريد الإلكتروني -->
-      <a href="mailto:fahad@example.com" class="contact-btn">
-        <div class="btn-content">
-          <span class="btn-icon">✉️</span>
-          <span>البريد الإلكتروني</span>
         </div>
         <span class="arrow-icon">←</span>
       </a>
