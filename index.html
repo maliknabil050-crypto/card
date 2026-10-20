@@ -6,8 +6,9 @@
   <title>فهد الزهراني | البطاقة الرقمية</title>
   <style>
     :root {
-      --bg: #070608;
-      --crystal-bg: rgba(255, 255, 255, 0.03);
+      --bg: #0B0A09;
+      --card-bg: rgba(20, 17, 15, 0.85);
+      --card-border: rgba(217, 119, 6, 0.4);
       --accent: #D97706;
       --accent-light: #FBBF24;
       --text: #F9FAFB;
@@ -23,9 +24,6 @@
 
     body {
       background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 10% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -34,47 +32,20 @@
       padding: 30px 16px;
     }
 
-    /* حاوية الكارت مع الإطار الزجاجي الكريستالي */
+    /* حاوية الكارت مع إطار كريستالي وهالة خفيفة وثابتة */
     .card-container {
-      position: relative;
       width: 100%;
       max-width: 410px;
-      background: var(--crystal-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 28px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--card-border);
+      border-radius: 26px;
       padding: 32px 22px;
       text-align: center;
-      box-shadow: 0 0 30px rgba(217, 119, 6, 0.15),
-                  0 20px 50px rgba(0, 0, 0, 0.9);
-      overflow: hidden;
-    }
-
-    /* إطار البطاقة الأساسي */
-    .card-container::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      pointer-events: none;
-    }
-
-    /* الشعاع الخفيف المتحرك على حواف الإطار فقط */
-    .card-container::after {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 29px;
-      background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.6), transparent);
-      background-size: 200% 100%;
-      pointer-events: none;
-      animation: borderLight 3s linear infinite;
-    }
-
-    @keyframes borderLight {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8),
+                  0 0 20px rgba(217, 119, 6, 0.15);
+      position: relative;
     }
 
     .avatar-container {
@@ -82,13 +53,11 @@
       height: 80px;
       margin: 0 auto 12px auto;
       border-radius: 50%;
-      border: 1.5px solid rgba(217, 119, 6, 0.5);
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
+      border: 2px solid var(--accent);
+      background-color: #1A1512;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px rgba(217, 119, 6, 0.25);
     }
 
     .avatar-symbol {
@@ -102,7 +71,6 @@
       font-weight: 950;
       color: #FFF;
       margin-bottom: 4px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .title-role {
@@ -120,29 +88,26 @@
       margin-bottom: 18px;
     }
 
-    /* الأزرار بتأثير الزجاج الشفاف */
     .contact-btn {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #1E1815;
+      border: 1px solid #332720;
       color: var(--text);
       text-decoration: none;
       padding: 13px 18px;
-      border-radius: 16px;
+      border-radius: 14px;
       font-weight: 700;
       font-size: 0.86rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
     .contact-btn:hover {
-      background: rgba(217, 119, 6, 0.25);
-      border-color: var(--accent);
+      background: var(--accent);
       color: #FFF;
+      border-color: var(--accent-light);
       transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(217, 119, 6, 0.3);
     }
 
     .btn-content {
@@ -172,7 +137,7 @@
     .card-footer {
       font-size: 0.72rem;
       color: var(--muted);
-      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      border-top: 1px dashed rgba(217, 119, 6, 0.3);
       padding-top: 12px;
       margin-top: 10px;
     }
