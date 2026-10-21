@@ -241,20 +241,33 @@
   <script>
     function playVoiceIntro() {
       if ('speechSynthesis' in window) {
-        // إيقاف أي نطق سابق إذا كان يعمل
         window.speechSynthesis.cancel();
 
         const textToSpeak = "مرحباً بكم، أنا فهد الزهراني، رائد أعمال. يسعدني تواصلكم معي عبر هذه البطاقة الرقمية.";
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         
-        utterance.lang = 'ar-SA'; // تحديد اللغة العربية (السعودية)
-        utterance.rate = 1.0;     // سرعة التحدث طبيعية
-        utterance.pitch = 1.0;    // طبقة الصوت
+        utterance.lang = 'ar-SA';
+        utterance.rate = 0.95; // سرعة هادئة وطبيعية
+        utterance.pitch = 0.8; // تخفيض طبقة الصوت لتناسب صوت الرجل
+
+        // اختيار صوت رجل إن وجد في المتصفح
+        const voices = window.speechSynthesis.getVoices();
+        const arabicVoice = voices.find(v => v.lang.includes('ar') && (v.name.includes('Male') || v.name.includes('Maged') || v.name.includes('Naif') || v.name.includes('Tarik') || !v.name.includes('Female')));
+        if (arabicVoice) {
+          utterance.voice = arabicVoice;
+        }
 
         window.speechSynthesis.speak(utterance);
       } else {
         alert("متصفحك لا يدعم خاصية القراءة الصوتية.");
       }
+    }
+
+    // تحميل الأصوات مسبقاً لضمان عملها بسلاسة
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.getVoices();
+      };
     }
   </script>
 
