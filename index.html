@@ -80,7 +80,7 @@
       font-weight: 600;
     }
 
-    /* زر المشغل الصوتي البشري */
+    /* زر المشغل الصوتي */
     .voice-btn {
       display: inline-flex;
       align-items: center;
@@ -180,11 +180,10 @@
     <div class="name">فهد الزهراني</div>
     <div class="title-role">رائد أعمال</div>
 
-    <!-- مشغل الصوت البشري الحقيقي -->
+    <!-- مشغل الصوت -->
     <button class="voice-btn" onclick="toggleAudio()">
-      <span id="speaker-icon">▶️</span> <span id="voice-text">استماع للنبذة بصوت فهد</span>
+      <span id="speaker-icon">▶️</span> <span id="voice-text">رسالة ترحيبية</span>
     </button>
-    <!-- ملف الصوت الحقيقي (ضع اسم ملفك الصوتي هنا) -->
     <audio id="fahadAudio" src="fahad-voice.mp3" onended="audioEnded()"></audio>
 
     <div class="links-list">
@@ -256,13 +255,13 @@
       } else {
         audio.pause();
         speakerIcon.textContent = "▶️";
-        voiceText.textContent = "استماع للنبذة بصوت فهد";
+        voiceText.textContent = "رسالة ترحيبية";
       }
     }
 
     function audioEnded() {
       speakerIcon.textContent = "▶️";
-      voiceText.textContent = "استماع للنبذة بصوت فهد";
+      voiceText.textContent = "رسالة ترحيبية";
     }
   </script>
 
