@@ -80,17 +80,17 @@
       font-weight: 600;
     }
 
-    /* زر الصوت الناطق */
+    /* زر المشغل الصوتي البشري */
     .voice-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       background: rgba(217, 119, 6, 0.15);
       border: 1px solid var(--accent);
       color: var(--accent-light);
-      padding: 7px 16px;
+      padding: 8px 18px;
       border-radius: 20px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: bold;
       cursor: pointer;
       margin-bottom: 22px;
@@ -180,10 +180,12 @@
     <div class="name">فهد الزهراني</div>
     <div class="title-role">رائد أعمال</div>
 
-    <!-- زر النطق الصوتي -->
-    <button class="voice-btn" onclick="playVoiceIntro()">
-      <span>🔊</span> الاستماع للنبذة التعريفية
+    <!-- مشغل الصوت البشري الحقيقي -->
+    <button class="voice-btn" onclick="toggleAudio()">
+      <span id="speaker-icon">▶️</span> <span id="voice-text">استماع للنبذة بصوت فهد</span>
     </button>
+    <!-- ملف الصوت الحقيقي (ضع اسم ملفك الصوتي هنا) -->
+    <audio id="fahadAudio" src="fahad-voice.mp3" onended="audioEnded()"></audio>
 
     <div class="links-list">
       <!-- 1. الاتصال المباشر -->
@@ -239,35 +241,28 @@
   </div>
 
   <script>
-    function playVoiceIntro() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
+    const audio = document.getElementById('fahadAudio');
+    const speakerIcon = document.getElementById('speaker-icon');
+    const voiceText = document.getElementById('voice-text');
 
-        const textToSpeak = "مرحباً بكم، أنا فهد الزهراني، رائد أعمال. يسعدني تواصلكم معي عبر هذه البطاقة الرقمية.";
-        const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        
-        utterance.lang = 'ar-SA';
-        utterance.rate = 0.95; // سرعة هادئة وطبيعية
-        utterance.pitch = 0.8; // تخفيض طبقة الصوت لتناسب صوت الرجل
-
-        // اختيار صوت رجل إن وجد في المتصفح
-        const voices = window.speechSynthesis.getVoices();
-        const arabicVoice = voices.find(v => v.lang.includes('ar') && (v.name.includes('Male') || v.name.includes('Maged') || v.name.includes('Naif') || v.name.includes('Tarik') || !v.name.includes('Female')));
-        if (arabicVoice) {
-          utterance.voice = arabicVoice;
-        }
-
-        window.speechSynthesis.speak(utterance);
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          speakerIcon.textContent = "⏸️";
+          voiceText.textContent = "إيقاف الصوت";
+        }).catch(error => {
+          alert("تأكد من رفع ملف الصوت fahad-voice.mp3 في المستودع.");
+        });
       } else {
-        alert("متصفحك لا يدعم خاصية القراءة الصوتية.");
+        audio.pause();
+        speakerIcon.textContent = "▶️";
+        voiceText.textContent = "استماع للنبذة بصوت فهد";
       }
     }
 
-    // تحميل الأصوات مسبقاً لضمان عملها بسلاسة
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = function() {
-        window.speechSynthesis.getVoices();
-      };
+    function audioEnded() {
+      speakerIcon.textContent = "▶️";
+      voiceText.textContent = "استماع للنبذة بصوت فهد";
     }
   </script>
 
