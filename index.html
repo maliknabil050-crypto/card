@@ -32,7 +32,6 @@
       padding: 30px 16px;
     }
 
-    /* حاوية الكارت مع إطار كريستالي وهالة خفيفة وثابتة */
     .card-container {
       width: 100%;
       max-width: 410px;
@@ -76,9 +75,32 @@
     .title-role {
       font-size: 0.85rem;
       color: var(--accent-light);
-      margin-bottom: 26px;
+      margin-bottom: 14px;
       font-style: italic;
       font-weight: 600;
+    }
+
+    /* زر الصوت الناطق */
+    .voice-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(217, 119, 6, 0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent-light);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 22px;
+      transition: all 0.2s ease;
+    }
+
+    .voice-btn:hover {
+      background: var(--accent);
+      color: #FFF;
+      transform: scale(1.03);
     }
 
     .links-list {
@@ -158,6 +180,11 @@
     <div class="name">فهد الزهراني</div>
     <div class="title-role">رائد أعمال</div>
 
+    <!-- زر النطق الصوتي -->
+    <button class="voice-btn" onclick="playVoiceIntro()">
+      <span>🔊</span> الاستماع للنبذة التعريفية
+    </button>
+
     <div class="links-list">
       <!-- 1. الاتصال المباشر -->
       <a href="tel:0569999699" class="contact-btn">
@@ -210,6 +237,26 @@
     </div>
 
   </div>
+
+  <script>
+    function playVoiceIntro() {
+      if ('speechSynthesis' in window) {
+        // إيقاف أي نطق سابق إذا كان يعمل
+        window.speechSynthesis.cancel();
+
+        const textToSpeak = "مرحباً بكم، أنا فهد الزهراني، رائد أعمال. يسعدني تواصلكم معي عبر هذه البطاقة الرقمية.";
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        
+        utterance.lang = 'ar-SA'; // تحديد اللغة العربية (السعودية)
+        utterance.rate = 1.0;     // سرعة التحدث طبيعية
+        utterance.pitch = 1.0;    // طبقة الصوت
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("متصفحك لا يدعم خاصية القراءة الصوتية.");
+      }
+    }
+  </script>
 
 </body>
 </html>
